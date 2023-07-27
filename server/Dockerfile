@@ -10,6 +10,4 @@ RUN gem install bundle && bundle install
 
 COPY . .
 
-ENV RACK_ENV=production
-
-CMD puma -p 3000
+CMD ["sh", "-c", "sleep 3; rake db:migrate; puma -p 3000"]

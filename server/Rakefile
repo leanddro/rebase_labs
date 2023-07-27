@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+require 'sequel'
+
+namespace :db do
+  db = Sequel.connect(ENV['DB_URI'])
+  migrations_path = 'config/db/migrations'
+
+  desc 'Migração no banco'
+  task :migrate do
+    Sequel.extension :migration
+    Sequel::Migrator.run(db, migrations_path)
+  end
+end
+
+namespace :import do
+  require './domain/service/convert_csv_to_array'
+  require './domain/service/save_all_in_database'
+  require './domain/model/result'
+
+  DB = Sequel.connect(ENV['DB_URI'])
+
+  desc 'Faz import do arquivo passado e salva no banco'
+  task :csv, :file_path do |_, args|
+    result = Service::ConvertCSVToArray
+             .new(args[:file_path])
+             .call
+             .and_then { |data| Service::SaveAllInDatabase.new(data).call }
+
+    puts result.value if result.success?
+    puts result.error unless result.success?
+  end
+end

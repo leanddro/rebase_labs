@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  server:
+    environment:
+      - RACK_ENV=dev
+      - DB_URI=postgresql://postgres:postgres@db/labs_dev
+  db:
+    environment:
+      - POSTGRES_DB=labs_dev
