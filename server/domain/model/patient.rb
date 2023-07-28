@@ -22,7 +22,7 @@ module Model
         birth_date: hash['data nascimento paciente'],
         address: hash['endereço/rua paciente'],
         city: hash['cidade paciente'],
-        state: hash['estado patiente"']
+        state: hash['estado patiente']
       )
     end
   end

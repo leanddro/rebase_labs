@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-require 'sinatra/base'
+require 'sinatra'
+require './config/sequel'
+
+configure do
+  DB = Config::Database.instance
+end
 
 class Application < Sinatra::Base
-  get '/' do
-    'Hello World'
-  end
+  require './app/controllers/exam_controller'
+  use Controller::ExamController
 end
