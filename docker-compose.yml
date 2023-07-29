@@ -8,11 +8,33 @@ services:
       - data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   server:
     build: server
     ports:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    command: [ "sh", "-c", "sleep 3; rake db:migrate; puma -p 3000" ]
+
+  sidekiq:
+    build: server
+    depends_on:
+      - db
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    command:
+      [
+        "sh",
+        "-c",
+        "sleep 3; sidekiq -r ./app/workers/exams_importer.rb"
+      ]
+
+  redis:
+    image: redis
+
 volumes:
   data:

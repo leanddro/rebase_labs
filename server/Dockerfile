@@ -8,6 +8,5 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundle && bundle install
 
-COPY . .
+COPY . ./
 
-CMD ["sh", "-c", "sleep 3; rake db:migrate; puma -p 3000"]

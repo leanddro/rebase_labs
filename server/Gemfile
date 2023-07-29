@@ -6,6 +6,7 @@ gem 'pg'
 gem 'puma'
 gem 'rake'
 gem 'sequel'
+gem 'sidekiq'
 gem 'sinatra'
 
 group :development do

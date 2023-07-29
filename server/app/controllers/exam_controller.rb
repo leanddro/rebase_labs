@@ -2,12 +2,13 @@
 
 require 'sinatra/base'
 require './domain/repository/exam_repository'
+require './app/workers/exams_importer'
 require './domain/service/convert_csv_to_array'
-require './domain/service/save_all_in_database'
 
 module Controller
   class ExamController < Sinatra::Base
     include Repository
+    include Worker
     include Service
 
     get '/api/exams' do
@@ -29,19 +30,11 @@ module Controller
     end
 
     post '/api/exams/import' do
-      file = params[:file][:tempfile]
-
-      result = Service::ConvertCSVToArray
-               .new(file)
-               .call
-               .and_then { |data| Service::SaveAllInDatabase.new(data).call }
-
-      if result.failure?
-        status 400
-        return { success: result.success?, data: result.error }.to_json
-      end
-
-      { success: result.success?, data: result.value }.to_json
+      csv_array = ConvertCSVToArray
+                  .new(params[:file][:tempfile])
+                  .call
+      ExamsImporter.perform_async(csv_array.value)
+      { data: 'processando...' }.to_json
     end
 
     get '/exams' do
