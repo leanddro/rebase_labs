@@ -1,4 +1,4 @@
-function populate_exams(params) {
+function populateExams() {
   const fragment = new DocumentFragment()
   const createEl = (element) => document.createElement(element)
   const url = '/api/exams'
@@ -36,10 +36,35 @@ function populate_exams(params) {
 }
 
 function buscarToken() {
-  window.location.href = `/exams/${document.getElementById('token').value}`
+  const token = document.getElementById('token').value.trim
+  if (token.length >= 6) {
+    window.location.href = `/exams/${token}`
+  } else {
+    alert('preencha com um token valido')
+  }
+
 }
 
-function get_exam_details() {
+function importCsv() {
+  const input = document.querySelector('input[type="file"]')
+  const formData = new FormData()
+
+  formData.append('file', input.files[0])
+
+  fetch('/api/exams/import', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Success:', result);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    })
+}
+
+function getExamDetails() {
   const fragment = new DocumentFragment()
   const token = document.URL.split('/')[4]
   const url = `/api/exams/${token}`
@@ -126,3 +151,5 @@ function get_exam_details() {
       document.querySelector('.container').appendChild(card)
     })
 }
+
+

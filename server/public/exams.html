@@ -14,10 +14,10 @@
     <div class="card text-white bg-dark mb-4 p-4">
       <div class="row">
         <div class="col">
-          <label for="">Importa exames</label>
+          <label for="csv">Importa exames</label>
           <div class="input-group mb-3">
-            <input type="file" class="form-control" name="" id="" placeholder="importe os exames">
-            <button class="btn btn-primary" role="button">Importar</button>
+            <input type="file" class="form-control" name="csv" id="csv">
+            <button class="btn btn-primary" role="button" onclick="importCsv()">Importar</button>
           </div>
         </div>
         <div class="col">
@@ -48,8 +48,7 @@
   <script src="js/exames.js">
   </script>
   <script>
-    populate_exams()
-    
+    populateExams()
   </script>
 </body>
 
