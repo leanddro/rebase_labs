@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Laboratorial</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body style="background-color: #585b70;">
+  <div class="container">
+    <h1>Exames</h1>
+    <div class="card text-white bg-dark mb-4 p-4">
+      <div class="row">
+        <div class="col">
+          <label for="">Importa exames</label>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" name="" id="" placeholder="importe os exames">
+            <button class="btn btn-primary" role="button">Importar</button>
+          </div>
+        </div>
+        <div class="col">
+          <label for="token">Buscar exame</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="token" id="token" placeholder="token">
+            <button class="btn btn-primary" role="button" onclick="buscarToken()">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-borderless table-dark">
+        <caption>Tabela contendo todos exames</caption>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Data</th>
+            <th>Paciente</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="js/exames.js">
+  </script>
+  <script>
+    populate_exams()
+    
+  </script>
+</body>
+
+</html>

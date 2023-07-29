@@ -18,9 +18,8 @@ module Model
       new(success: false, error:)
     end
 
-    def success?
-      success
-    end
+    def success? = success
+    def failure? = !success
 
     def and_then(&block)
       return self unless success?
