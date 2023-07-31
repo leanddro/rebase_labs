@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  db:
+    environment:
+      - POSTGRES_DB=labs_test
+  server:
+    environment:
+      - RACK_ENV=test
+      - DB_URI=postgresql://postgres:postgres@db/labs_test
+    command: [ "sh", "-c", "sleep 3; rake db:migrate; rspec" ]
+  sidekiq:
+    environment:
+      - DB_URI=postgresql://postgres:postgres@db/labs_test

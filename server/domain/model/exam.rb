@@ -4,6 +4,8 @@ require_relative 'base'
 
 module Model
   class Exam < Base
+    attr_accessor :token, :date, :patient_cpf, :doctor_crm
+
     def initialize(token:, date:, patient_cpf:, doctor_crm:)
       @token = token
       @date = date

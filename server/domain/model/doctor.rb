@@ -4,6 +4,8 @@ require_relative 'base'
 
 module Model
   class Doctor < Base
+    attr_accessor :name, :crm, :crm_state, :email
+
     def initialize(name:, crm:, crm_state:, email:)
       @name = name
       @crm = crm

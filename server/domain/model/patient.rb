@@ -4,6 +4,8 @@ require_relative 'base'
 
 module Model
   class Patient < Base
+    attr_accessor :name, :cpf, :email, :birth_date, :address, :city, :state
+
     def initialize(name:, cpf:, email:, birth_date:, address:, city:, state:)
       @name = name
       @cpf = cpf

@@ -1,12 +1,18 @@
 version: '3.9'
 services:
+  db:
+    environment:
+      - POSTGRES_DB=labs_dev
+    volumes:
+      - data:/var/lib/postgresql/data
   server:
     environment:
       - RACK_ENV=dev
       - DB_URI=postgresql://postgres:postgres@db/labs_dev
+    command: [ "sh", "-c", "sleep 3; rake db:migrate; puma -p 3000" ]
   sidekiq:
     environment:
       - DB_URI=postgresql://postgres:postgres@db/labs_dev
-  db:
-    environment:
-      - POSTGRES_DB=labs_dev
+
+volumes:
+  data:

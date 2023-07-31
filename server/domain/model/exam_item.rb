@@ -4,6 +4,8 @@ require_relative 'base'
 
 module Model
   class ExamItem < Base
+    attr_accessor :type, :limits_between, :result, :exam_token
+
     def initialize(type:, limits_between:, result:, exam_token:)
       @type = type
       @limits_between = limits_between

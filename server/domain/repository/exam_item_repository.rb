@@ -7,9 +7,9 @@ module Repository
     def self.create_all(exam_items, existing_tokens)
       new_exam_items = exam_items.reject { |exam_item| existing_tokens.include?(exam_item['exam_token']) }
       DB[:exam_items].multi_insert(new_exam_items)
-      Result.success
+      Result.success 'Items de exames cadastrados com sucesso'
     rescue StandardError
-      Result.failure('Erro ao tentar cadastrar itens ao exame')
+      Result.failure 'Erro ao tentar cadastrar itens ao exame'
     end
   end
 end
