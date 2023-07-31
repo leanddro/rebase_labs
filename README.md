@@ -1,4 +1,4 @@
-# rebase labs
+# Rebase Labs
 
 ### Tópicos
 
@@ -14,10 +14,13 @@
 
 <p align="justify">
   Sistema feito com base no aprendizado adquirido, o laboratório ofertado pela Rebase. O sistema consiste na listagem e
-  importação de exames laboratoriais utilizando tecnologias como ruby, sinatra, sequel, postgresql, redis, sidekiq, docker
+  importação de exames laboratoriais utilizando tecnologias como ruby, sinatra, sequel, postgresql, redis, sidekiq, docker, javascript
 </p>
 
-## Modelo ER
+## Modelo ER!
+
+![Untitled](https://github.com/leanddro/rebase_labs/assets/75085756/0c7445cc-c8f9-4a18-9264-f92b36180b24)
+
 
 ## Funcionalidades
 
